@@ -1,0 +1,4 @@
+# The submitted solution uses only the Python standard library.
+# No third-party packages are required.
+# The submitted solution uses only the Python standard library.
+# No third-party packages are required.

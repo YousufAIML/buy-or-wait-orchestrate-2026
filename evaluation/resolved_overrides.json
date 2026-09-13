@@ -1,0 +1,338 @@
+{
+  "failures": [],
+  "image_amounts": {
+    "event_10521": {
+      "amount": "393.22",
+      "confidence": "1.0",
+      "currency": "INR",
+      "justification": "The total invoice amount is clearly displayed as 393.22, which is also written in words as 'Three Hundred and Ninety Three Rupees And Twenty Two Paise Only'."
+    },
+    "event_1442": {
+      "amount": "100000",
+      "confidence": "0.95",
+      "currency": "INR",
+      "justification": "The event description specifies 'Outstanding rent balance', which matches the 'Balance Due' figure of 1,00,000.00 shown in the rent receipt."
+    },
+    "event_1545": {
+      "amount": "41272.0",
+      "confidence": "1.0",
+      "currency": "INR",
+      "justification": "The receipt shows a Net Amount and Cash Paid of 41272.00 INR, which equals the total sum of all individual items listed."
+    },
+    "event_1700": {
+      "amount": "2854.0",
+      "confidence": "0.95",
+      "currency": "INR",
+      "justification": "The item bill subtotal under 'TOTAL ORDER BILL DETAILS' is ₹2854.00, which matches the sum of the individual line items listed above."
+    },
+    "event_1786": {
+      "amount": "704.05",
+      "confidence": "0.95",
+      "currency": "INR",
+      "justification": "The bill displays 'This month's charges' / 'Amount due till 06-Feb-2026' as 704.05, which is also stated in words as 'Seven Hundred Four Rupees and Five Paise Only'."
+    },
+    "event_253": {
+      "amount": "4365000",
+      "confidence": "0.99",
+      "currency": "IDR",
+      "justification": "The total Net Pay on the pay slip is IDR 4,365,000 (Subtotal Earnings of 4,780,800 minus Total Deductions of 415,800), which is also written as 'Four Million Three Hundred Sixty Five Thousand Rupiahs'."
+    },
+    "event_3051": {
+      "amount": "1995.0",
+      "confidence": "1.0",
+      "currency": "INR",
+      "justification": "The invoice shows a grand total of 1995.00, which is also confirmed in words as 'One Thousand And Nine Hundred And Ninety-Five Rupees And Zero Paisa Only'."
+    },
+    "event_3231": {
+      "amount": "8528",
+      "confidence": "0.95",
+      "currency": "INR",
+      "justification": "The receipt explicitly lists 'Grand Total (RS) : 8528' at the bottom of the bill, rounded from the exact total of 8528.10."
+    },
+    "event_4535": {
+      "amount": "15339.0",
+      "confidence": "1.0",
+      "currency": "INR",
+      "justification": "The document shows a total amount received of ₹ 15,339.00, which is also confirmed by the text 'Rupees Fifteen Thousand Three Hundred Thirty Nine Only' and the sum of the line items (13880 + 1050 + 409 = 15339)."
+    },
+    "event_5170": {
+      "amount": "723.0",
+      "confidence": "1.0",
+      "currency": "INR",
+      "justification": "The receipt clearly displays a Total Amount Received of ₹ 723.00, which is also confirmed in words as 'Rupees Seven Hundred Twenty Three Only'."
+    },
+    "event_6033": {
+      "amount": "79679.26",
+      "confidence": "1.0",
+      "currency": "INR",
+      "justification": "The total amount and balance due on the invoice is ₹79,679.26, as shown in the summary table at the bottom right and verified by the 'Total In Words' section ('Indian Rupee Seventy-Nine Thousand Six Hundred Seventy-Nine and Twenty-Six Paise Only')."
+    },
+    "event_6859": {
+      "amount": "3650.0",
+      "confidence": "0.98",
+      "currency": "INR",
+      "justification": "The provisional bill shows a Total Bill Amount and Amount Payable of 3650.00 INR."
+    },
+    "event_7307": {
+      "amount": "33.5",
+      "confidence": "1.0",
+      "currency": "USD",
+      "justification": "The receipt specifies a final Total of $33.50 ($28.50 ride distance + $5.00 airport surcharge)."
+    },
+    "event_7941": {
+      "amount": "2298",
+      "confidence": "1.0",
+      "currency": "INR",
+      "justification": "The total paid amount listed in the order summary is ₹2,298."
+    },
+    "event_9421": {
+      "amount": "4543.0",
+      "confidence": "0.98",
+      "currency": "INR",
+      "justification": "The total amount shown at the bottom right of the receipt is 4543.00 (Rs. 4543, Ps. 00), which correctly sums the listed items: 1500 + 724 + 796 + 550 + 303 + 670 = 4543."
+    },
+    "event_9806": {
+      "amount": "9968.0",
+      "confidence": "0.99",
+      "currency": "INR",
+      "justification": "The image shows a tax invoice table with a Grand Total including taxes of 9,968.00, under the explicit currency indicator INR."
+    }
+  },
+  "message_classifications": {
+    "message_106": {
+      "accepted": true,
+      "action": "none",
+      "confidence": "0.97",
+      "justification": "The message provides a status update about an ongoing dispute and a pending reversal, but does not request confirmation, amendment of amount or date, or cancellation of any transaction. Therefore no specific action can be taken."
+    },
+    "message_108": {
+      "accepted": true,
+      "action": "confirm",
+      "confidence": "0.96",
+      "justification": "The message states that the proceeds from the investment sale have settled in the cash account, the sale order is complete, and no remaining proceeds are pending, confirming the transaction."
+    },
+    "message_110": {
+      "accepted": true,
+      "action": "confirm",
+      "confidence": "0.97",
+      "justification": "The message reports that prize proceeds have reached the account, the claim is closed, and no further payments are scheduled, confirming receipt of funds."
+    },
+    "message_114": {
+      "accepted": true,
+      "action": "confirm",
+      "confidence": "0.98",
+      "justification": "The notice explicitly states that the investment sale proceeds have settled in the cash account, the sale order is complete, and there are no remaining proceeds pending, confirming the transaction."
+    },
+    "message_117": {
+      "accepted": true,
+      "action": "confirm",
+      "confidence": "0.95",
+      "justification": "The message provides a factual update that the employer credit is a reimbursement for a prior expense, the claim is closed, and no further reimbursement is scheduled, confirming the payroll change without requesting any amendment or cancellation."
+    },
+    "message_121": {
+      "accepted": true,
+      "action": "none",
+      "confidence": "0.97",
+      "justification": "The message reports the status of a dispute and that no reversal has been posted; it does not request confirmation, amendment, or cancellation of any transaction, so no actionable change can be inferred."
+    },
+    "message_14": {
+      "accepted": true,
+      "action": "confirm",
+      "confidence": "0.95",
+      "justification": "The message states that a refund has been initiated and is pending, confirming the status of the payment/refund without requesting any amendment or cancellation."
+    },
+    "message_15": {
+      "accepted": true,
+      "action": "none",
+      "confidence": "1.0",
+      "justification": "The message only provides an account update about market value changes and states no units were sold or cash generated; it does not request confirmation, amendment, or cancellation of any transaction."
+    },
+    "message_150": {
+      "accepted": true,
+      "action": "confirm",
+      "confidence": "0.95",
+      "justification": "The message informs that an employer credit (reimbursement) for a prior work expense has been issued and the claim is closed, confirming that a payment has been made."
+    },
+    "message_152": {
+      "accepted": true,
+      "action": "none",
+      "confidence": "0.96",
+      "justification": "The message reports that a refund has been initiated but not yet received, providing a status update rather than confirming, amending, or canceling any transaction."
+    },
+    "message_157": {
+      "accepted": true,
+      "action": "none",
+      "confidence": "0.95",
+      "justification": "The message provides a status update that the extra card charge is still under investigation and no reversal has been posted yet. It does not confirm a reversal, amend any amount or date, or cancel the transaction, so the appropriate classification is 'none'."
+    },
+    "message_163": {
+      "accepted": true,
+      "action": "none",
+      "confidence": "0.99",
+      "justification": "The message provides an informational update about the investment value decreasing and notes no sale or cash transaction. It does not request confirmation, amendment of amount or date, or cancellation of any transaction, so the appropriate action is 'none'."
+    },
+    "message_164": {
+      "accepted": true,
+      "action": "none",
+      "confidence": "0.99",
+      "justification": "The note reports the status of a dispute and investigation, with no request to confirm, amend amount, amend date, or cancel any transaction; therefore no actionable fact is established."
+    },
+    "message_17": {
+      "accepted": true,
+      "action": "confirm",
+      "confidence": "0.99",
+      "justification": "The message states that the prize proceeds have been received, the claim is closed, and no further scheduled payments are pending, directly confirming the status of the account."
+    },
+    "message_172": {
+      "accepted": true,
+      "action": "none",
+      "confidence": "0.98",
+      "justification": "The message only provides a status update that a refund has been initiated and is pending; it does not confirm a transaction, request an amendment to amount or date, or cancel anything, so the appropriate action is 'none'."
+    },
+    "message_174": {
+      "accepted": true,
+      "action": "confirm",
+      "confidence": "0.95",
+      "justification": "The message states that the latest funds from BrightPath Media are a reimbursement for prior work expenses, the claim is closed, and no additional reimbursement is scheduled, confirming the nature and status of the payment (referencing payroll EMP-0174)."
+    },
+    "message_179": {
+      "accepted": true,
+      "action": "none",
+      "confidence": "0.99",
+      "justification": "The note only informs that a previous debit failed and another will be attempted; it does not request any specific action such as confirm, amend amount/date, or cancel."
+    },
+    "message_183": {
+      "accepted": true,
+      "action": "none",
+      "confidence": "0.99",
+      "justification": "The message reports an ongoing dispute and that no reversal has been posted; it does not confirm a transaction, request an amount or date amendment, or request cancellation."
+    },
+    "message_185": {
+      "accepted": true,
+      "action": "none",
+      "confidence": "0.99",
+      "justification": "The message only provides an informational update that the investment value has decreased and no cash transaction occurred. It does not request confirmation, amendment of amount or date, cancellation, or any other actionable directive, so the appropriate classification is 'none'."
+    },
+    "message_197": {
+      "accepted": true,
+      "action": "none",
+      "confidence": "0.99",
+      "justification": "The message provides a status update about an ongoing dispute and a reversal that has not been recorded. It does not request confirmation, amendment of amount or date, or cancellation, so the appropriate action is none."
+    },
+    "message_198": {
+      "accepted": true,
+      "action": "none",
+      "confidence": "0.96",
+      "justification": "The message reports a failed debit attempt and indicates a future retry, but does not request confirmation, amendment of amount or date, or cancellation of any transaction."
+    },
+    "message_201": {
+      "accepted": true,
+      "action": "none",
+      "confidence": "0.96",
+      "justification": "The message reports a failed debit attempt and indicates that another attempt will be made, but it does not request confirmation, amendment of amount or date, or cancellation of the transaction."
+    },
+    "message_205": {
+      "accepted": true,
+      "action": "none",
+      "confidence": "0.98",
+      "justification": "The message only reports a market value change of an existing holding with no sale or cash transaction, so it does not confirm, amend, or cancel any transaction."
+    },
+    "message_207": {
+      "accepted": true,
+      "action": "none",
+      "confidence": "0.99",
+      "justification": "The message only reports a market‑value increase with no units sold, no cash proceeds, and no date or amount changes, so it does not establish a confirm, amend_amount, amend_date, or cancel action."
+    },
+    "message_215": {
+      "accepted": true,
+      "action": "none",
+      "confidence": "0.98",
+      "justification": "The message only provides a status update about a refund being processed and pending receipt, with no request to confirm, amend amount, amend date, or cancel any transaction. Therefore, the appropriate action is 'none'."
+    },
+    "message_25": {
+      "accepted": true,
+      "action": "none",
+      "confidence": "0.95",
+      "justification": "The message provides a status update about a refund being initiated but does not confirm, amend amount/date, or cancel any transaction."
+    },
+    "message_28": {
+      "accepted": true,
+      "action": "confirm",
+      "confidence": "0.98",
+      "justification": "The message states that the prize proceeds have reached the account, the claim is closed, and no further payments are scheduled, confirming receipt of the payment."
+    },
+    "message_35": {
+      "accepted": true,
+      "action": "confirm",
+      "confidence": "0.99",
+      "justification": "The message explicitly states that the property maintenance payment was received on 24 July 2026, providing a receipt reference and confirming the transaction."
+    },
+    "message_39": {
+      "accepted": true,
+      "action": "none",
+      "confidence": "0.96",
+      "justification": "The message only informs that a refund has been initiated and is pending; it does not confirm receipt, amend amount/date, or cancel anything."
+    },
+    "message_52": {
+      "accepted": true,
+      "action": "none",
+      "confidence": "0.99",
+      "justification": "The notice only reports a market value increase with no units sold or cash proceeds, providing no request to confirm, amend amount/date, or cancel any transaction."
+    },
+    "message_59": {
+      "accepted": true,
+      "action": "none",
+      "confidence": "0.99",
+      "justification": "The message only provides a status update that a refund has been initiated and is pending; it does not request confirmation, amendment of amount or date, cancellation, or any other actionable change."
+    },
+    "message_64": {
+      "accepted": true,
+      "action": "confirm",
+      "confidence": "0.95",
+      "justification": "The message states that the tote bag order was paid in INR on 3 April 2026, providing confirmation of the transaction with a reference number."
+    },
+    "message_69": {
+      "accepted": true,
+      "action": "none",
+      "confidence": "0.95",
+      "justification": "The message only informs that a previous debit attempt failed and another will be attempted; it does not directly request confirmation, amendment, or cancellation."
+    },
+    "message_75": {
+      "accepted": true,
+      "action": "confirm",
+      "confidence": "0.95",
+      "justification": "The message explicitly states that the prize proceeds have reached the account, confirming the receipt of funds."
+    },
+    "message_79": {
+      "accepted": true,
+      "action": "none",
+      "confidence": "0.99",
+      "justification": "The message only informs that the portfolio's displayed market value has increased and will continue to fluctuate; it does not request confirmation, amendment of amount or date, or cancellation of any transaction."
+    },
+    "message_86": {
+      "accepted": true,
+      "action": "confirm",
+      "confidence": "0.98",
+      "justification": "The message provides explicit financial details: a wallet charge at Charge Point 1110 on 3 September 2026 at 12:35 a.m. and an employer‑confirmed salary credit of USD 1296 scheduled for 15 September 2026, confirming these events."
+    },
+    "message_88": {
+      "accepted": true,
+      "action": "confirm",
+      "confidence": "0.97",
+      "justification": "The message reports that the prize proceeds have been received in the account and the claim is closed, confirming that the payment was made. No amendment or cancellation is requested, so the appropriate action is confirm."
+    },
+    "message_92": {
+      "accepted": true,
+      "action": "confirm",
+      "confidence": "0.98",
+      "justification": "The message states that the investment sale proceeds have been deposited into the cash account, the sale order is completed, no pending results remain, and the transaction history confirms the amount received (Ref account FIN-0092)."
+    },
+    "message_99": {
+      "accepted": true,
+      "action": "confirm",
+      "confidence": "0.95",
+      "justification": "The notice states that prize proceeds have reached the account after withholding, confirming that the payment has been made and the claim is closed."
+    }
+  },
+  "version": 1
+}

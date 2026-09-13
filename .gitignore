@@ -1,0 +1,16 @@
+# Local ADE conversation transcript
+log.txt
+
+# Local credentials; never commit or package these
+.env
+.env.*
+!.env.example
+
+# Runtime extraction and model usage artifacts
+/evaluation/usage_ledger.jsonl
+/evaluation/extraction_cache.sqlite3
+/evaluation/extraction_audit.jsonl
+
+# Python bytecode and caches
+__pycache__/
+*.pyc

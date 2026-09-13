@@ -43,6 +43,39 @@ python3 code/main.py
 
 After running your solution, confirm that `output.csv` exists in the repository root and contains the required columns and one row for every request.
 
+## How to run the final pipeline
+
+Run commands from the repository root. The scripts in `code/` are the orchestration entry points, not duplicate implementations; the deterministic engine remains under `src/`.
+
+1. **Deterministic validation with mock explanations** (no provider call):
+   ```bash
+   python3 code/main.py --mode evaluation
+   ```
+2. **Image evidence resolution**, after verifying the Gemini quota with one deliberate no-retry call, run the existing image-batch entry point with five-second pacing and zero retries:
+   ```bash
+   python3 - <<'PY'
+   from src.extraction.batch import run_image_batch
+   print(run_image_batch(fixed_delay_seconds=5.0, gemini_max_retries=0))
+   PY
+   ```
+   It persists successful values to `evaluation/resolved_overrides.json` and uses the cache/usage ledger. Do not rerun it after all image overrides are resolved.
+3. **Fresh Groq explanation batch** (live calls, only after numeric decisions are final):
+   ```bash
+   python3 code/groq_batch.py
+   ```
+   If the workspace execution limit interrupts a fresh batch, resume only the missing requests in bounded chunks:
+   ```bash
+   python3 code/groq_resume.py --limit 50
+   ```
+   Repeat the bounded resume command until it reports 250 persisted explanations and zero consistency flags. It does not recall already persisted requests.
+4. **Final live-explanation validator and output writer**:
+   ```bash
+   python3 code/final_output.py
+   ```
+   This recomputes the deterministic decisions, checks every live explanation against the finalized fields, validates all output invariants, and writes root-level `output.csv` only when all rows pass.
+
+The final submission package includes these scripts so the staged build and its recovery path are reproducible. Do not run the live Groq scripts during ordinary deterministic tests.
+
 ## Important File Locations
 
 ```text
@@ -131,6 +164,33 @@ Your solution must:
 - keep behavior deterministic where possible
 
 If you use API keys or secrets, read them from environment variables. Never hardcode secrets in the repo.
+
+## Known limitations
+
+Phase 3 is locked after fixing two structural recurrence bugs:
+
+- **Income recurrence rejection:** regular salary history was previously grouped with irregular bonuses/one-off credits, causing the entire income group to be rejected. Clean regular income subsequences are now preserved.
+- **Dense-cadence underprojection:** a sparse same-day calendar subsequence could previously override a denser regular cadence such as 10-day groceries or 5-day transport. Full-group cadence coverage now takes precedence, and independently regular remainder streams are preserved.
+
+The final public-sample match remains limited: exact `amount_safe_to_pay` matches were **1/21 after the final Phase 3 implementation**, compared with **2/21 before the final coverage fix**; exact `earliest_date_for_full_payment` matches were **6/21**, compared with **7/21 before that fix**. The remaining gap is attributed to residual date-projection methodology, especially fixed 30/31-day monthly drift instead of exact calendar recurrence, and possibly the essential-versus-flexible spending distinction, which is not yet fully modeled. These are documented methodology limitations, not confirmed structural bugs. Status and payment-method mismatches are predominantly inherited from this documented recurrence-methodology gap, including deadline-boundary sensitivity where small date differences can flip a completion check from pass to fail.
+
+Eleven of the 250 evaluation requests remain blocked by unresolved Gemini image amounts. They are pending the provider's daily quota reset and will be resolved before the final Phase 6 run; blank amounts are never treated as zero.
+
+This submission intentionally uses a stdlib-only CSV layer because pandas is unavailable in the execution sandbox: `ensurepip` is missing, apt installation is not permitted, and the available Python interpreters do not bundle pandas. `src/engine/dataframe_lite.py` replaces DataFrame operations with typed dataclass loading, centralized coercion (`date`, `Decimal`, boolean, and optional parsing), and explicit O(1) indexes for joins. All financial arithmetic uses `Decimal`; all calendar values use `datetime.date`. The loader is deliberately narrow and does not provide general-purpose vectorized transformations.
+
+### Final architecture and model routing
+
+The final solution has two layers. The evidence layer resolves image amounts and classifies relevant messages at the persisted `evaluation/resolved_overrides.json` boundary; Gemini `gemini-3.6-flash` is used only for image evidence: 16 Phase 6 calls plus the earlier resolved `event_253` call, while the Phase 2 message-classification calls use Groq. The decision layer is deterministic: it performs currency conversion, lifecycle/conflict resolution, 90-day forecasting, payment-plan construction/ranking, spending-change validation, and strict output validation. Groq `openai/gpt-oss-120b` is used only after each numeric decision is final, to phrase `decision_explanation`; its prompt receives finalized fields and cannot revise or recompute them. The final validator checks the live explanation facts against the deterministic values before writing `output.csv`.
+
+The required empty-date convention is intentional: `earliest_date_for_full_payment` is an empty CSV cell when no safe full-payment date exists, while categorical absent values such as `payment_plan` and `spending_changes_needed` use the literal `none`. The documented Phase 3 date-projection limitation remains: small recurrence-projection differences can shift an earliest safe date across a desired-completion deadline.
+
+### Event-context-aware image extraction (post-diagnostic improvement)
+
+A read-only diagnostic confirmed one isolated extraction bug and one instance of the known recurrence limitation. The image-extraction prompt in `src/extraction/handlers.py` now passes the linked event's description as context and instructs the model to select the figure matching that description on multi-figure receipts: when the event describes an outstanding balance, balance due, remaining amount, or unpaid portion, the outstanding/balance-due figure is preferred over a total or gross transaction figure; otherwise the total is preferred. This is a general prompt improvement, not a special case. It was validated by a single re-extraction of `event_1442` ("Outstanding rent balance"), which corrected the override from the receipt's `INR 200,000` total to its `INR 100,000` balance-due figure and made `request_16` match all four sample fields. The confirmed `request_17` case is the already-documented latest-occurrence recurrence limitation and was intentionally left unchanged.
+
+### Recurrence-amount outlier guard (scoped post-diagnostic fix)
+
+A second read-only diagnostic across all 2,467 recurring rules of the 250 evaluation requests found exactly one case where the inferred recurrence amount was a significant outlier: a one-off image-resolved event (an airline ticket for `user_105`) landed as the latest observation of the transport category, and the `max(amounts[-3:])` inference for protected/variable debits projected that one-off amount forward every period. The sample set contained one analogous case (`request_17`'s bulk grocery purchase in the weekly groceries stream). Because the blast radius was exactly one evaluation request plus one sample request (stable across 1.5x/2x thresholds), the fix was scoped minimally in `src/engine/forecast.py`: after the existing amount inference, if a stream has at least four observations and the inferred amount exceeds twice the median of the stream's own prior observations, the rule falls back to that prior median. This guards only genuine outliers within a recurrence stream and leaves all other rules unchanged — exactly one evaluation row (`request_105`) changed as a result, and `request_17` began matching status, method, and earliest-date in the public sample check. The residual `request_17` amount difference remains part of the documented Phase 3 projection limitation.
 
 ---
 
